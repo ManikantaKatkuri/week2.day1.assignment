@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class CreateLead {
+public class EditLead {
 
 	public static void main(String[] args) throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
@@ -30,9 +30,13 @@ public class CreateLead {
 		WebElement ele = driver.findElement(By.id("createLeadForm_generalStateProvinceGeoId"));
 		Select province = new Select(ele);
 		province.selectByVisibleText("New York");
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		driver.findElement(By.name("submitButton")).click();
 		Thread.sleep(2000);
+		driver.findElement(By.linkText("Edit")).click();
+		driver.findElement(By.id("updateLeadForm_description")).clear();
+		driver.findElement(By.id("updateLeadForm_importantNote")).sendKeys("Software Tester");
+		driver.findElement(By.name("submitButton")).click();		
 		String title = driver.getTitle();
 		System.out.println("Titile of current page: "+title);
 		Thread.sleep(5000);
